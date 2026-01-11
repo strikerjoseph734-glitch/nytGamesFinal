@@ -366,7 +366,6 @@ function positionHoneycomb() {
 // Initialize once in case game is shown first
 positionHoneycomb();
 
-
 // ---------------------
 // 🔎 Word Search JS
 // ---------------------
@@ -430,38 +429,42 @@ function generateWordSearch() {
 
   let grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(""));
 
-  // Place words
+  // Place words (guaranteed)
   wordsearchWords.forEach(word => {
     let placed = false;
-    let attempts = 0;
-    while (!placed && attempts < 100) {
-      attempts++;
-      const dir = randomInt(0, 2); // 0=H, 1=V, 2=Diagonal
-      const row = randomInt(0, gridSize - 1);
-      const col = randomInt(0, gridSize - 1);
-      let fits = true;
 
-      for (let i = 0; i < word.length; i++) {
-        let r = row, c = col;
-        if (dir === 0) c += i;
-        else if (dir === 1) r += i;
-        else { r += i; c += i; }
+    while (!placed) {
+      let attempts = 0;
 
-        if (r >= gridSize || c >= gridSize || (grid[r][c] && grid[r][c] !== word[i])) {
-          fits = false;
-          break;
-        }
-      }
+      while (!placed && attempts < 300) {
+        attempts++;
+        const dir = randomInt(0, 2); // 0=H, 1=V, 2=Diagonal
+        const row = randomInt(0, gridSize - 1);
+        const col = randomInt(0, gridSize - 1);
+        let fits = true;
 
-      if (fits) {
         for (let i = 0; i < word.length; i++) {
           let r = row, c = col;
           if (dir === 0) c += i;
           else if (dir === 1) r += i;
           else { r += i; c += i; }
-          grid[r][c] = word[i];
+
+          if (r >= gridSize || c >= gridSize || (grid[r][c] && grid[r][c] !== word[i])) {
+            fits = false;
+            break;
+          }
         }
-        placed = true;
+
+        if (fits) {
+          for (let i = 0; i < word.length; i++) {
+            let r = row, c = col;
+            if (dir === 0) c += i;
+            else if (dir === 1) r += i;
+            else { r += i; c += i; }
+            grid[r][c] = word[i];
+          }
+          placed = true;
+        }
       }
     }
   });
@@ -484,7 +487,6 @@ function generateWordSearch() {
       cell.dataset.col = c;
       wsGridEl.appendChild(cell);
 
-      // Click to select
       cell.addEventListener("click", () => {
         if (cell.classList.contains("selected")) {
           cell.classList.remove("selected");
@@ -511,12 +513,16 @@ function generateWordSearch() {
 wsBtn.addEventListener("click", () => {
   menu.style.display = "none";
   wsGame.style.display = "block";
+
+  wsFoundWords = [];     // ✅ reset state
+  selectedCells = [];   // ✅ reset state
+
   generateWordSearch();
 });
 
 wsBackBtn.addEventListener("click", () => {
   wsGame.style.display = "none";
-  menu.style.display = ""; // use block to match other games
+  menu.style.display = "";
   selectedCells = [];
 });
 
@@ -565,6 +571,7 @@ document.addEventListener("keydown", (e) => {
   if (wsGame.style.display !== "block") return;
   if (e.key === "Enter") submitWordSearch();
 });
+
 
 // ---------------------
 // 🧩 Mini Crossword JS
