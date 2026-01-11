@@ -1,6 +1,6 @@
 {
-  "name": "Valentine's Games",
-  "short_name": "ValGame",
+  "name": "Valentine's Games <3",
+  "short_name": "Games <3",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -18,3 +18,4 @@
     }
   ]
 }
+
