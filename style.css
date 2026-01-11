@@ -1,0 +1,618 @@
+/* ---------- App Layout Fix ---------- */
+.app {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+
+/* ---------- Colors ---------- */
+:root {
+  --red: #b11226;
+  --pink: #fdecef;
+  --white: #ffffff;
+  --text: #111;
+}
+
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Body ---------- */
+body {
+  min-height: 100vh;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  background-color: var(--red);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---------- Floating Hearts ---------- */
+.hearts-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hearts-bg span {
+  position: absolute;
+  bottom: -50px;
+  color: rgba(250, 218, 221);
+  animation-name: floatHeart;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floatHeart {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 1; }
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  text-align: center;
+  padding: 1.5rem 1rem 1.5rem;
+}
+
+.app-header h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  margin-bottom: 0.2rem;
+  animation: titlePop 2s ease-in-out infinite alternate;
+}
+
+.subtitle {
+  color: #ffffff;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  margin-top: 0.2rem;
+}
+
+@keyframes titlePop {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+/* ---------- Games Grid ---------- */
+.games {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.game-card {
+  display: inline-block;
+  width: auto;
+  min-width: 100px;
+  max-width: 180px;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+  border-radius: 12px;
+  border: none;
+  background: var(--white);
+  color: var(--red);
+  text-align: center;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.game-card::before { content: "♥ "; color: var(--red); }
+
+.game-card:active { transform: scale(0.95); box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
+.game-card:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+
+/* ---------- Game Sections ---------- */
+.game-section {
+  display: none;
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--white);
+}
+
+/* ---------- Footer ---------- */
+footer p {
+  color: #ffffff;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* ---------- Lovle Game Styles ---------- */
+.lovle-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  gap: 5px;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.lovle-cell {
+  width: 50px;
+  height: 50px;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1.5rem; font-weight: bold;
+  background: #fff; color: #b11226;
+  border-radius: 6px; text-transform: uppercase;
+  font-family: 'Playfair Display', serif;
+}
+
+.lovle-cell.correct { background: #4caf50; color:#fff; }
+.lovle-cell.present { background: #ffeb3b; color:#111; }
+.lovle-cell.absent { background: #ccc; color:#111; }
+/* ---------- Lovle Typing & Animations ---------- */
+.lovle-cell {
+  transition: transform 0.15s ease, background-color 0.3s ease;
+}
+
+.lovle-cell.filled {
+  transform: scale(1.1);
+}
+
+.lovle-cell.reveal {
+  animation: flip 0.4s ease forwards;
+}
+
+@keyframes flip {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+.lovle-win {
+  animation: winPop 0.9s ease;
+}
+
+@keyframes winPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+/* ---------- Lovle Message Upgrade ---------- */
+#lovle-message {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+#lovle-message.show {
+  animation: messagePop 0.8s ease forwards;
+}
+
+@keyframes messagePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* ---------- Back Button ---------- */
+.back-btn {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  opacity: 0.9;
+}
+/* ---------- Game Section Headers ---------- */
+.game-section h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 10px     rgba(255,255,255,0.3);
+
+}
+/* ---------- Spelling Bee ---------- */
+.spelling-rule {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--pink);
+}
+
+.bee-letters {
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  grid-template-rows: repeat(3, 70px);
+  gap: 10px;
+  justify-content: center;
+  margin: 1rem auto;
+}
+
+.bee-letter {
+  position: absolute;       /* stay in honeycomb coordinates */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #b11226;
+  font-size: 1.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  user-select: none;
+}
+
+.letter-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  transition: transform 0.15s ease;
+}
+
+.bee-input {
+  min-height: 2.5rem;
+  font-size: 1.6rem;
+  margin: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+#bee-message {
+  display: inline-block;       /* keep inline-block so scaling works */
+  min-height: 1.5rem;          /* optional: increase if needed */
+  text-align: center;
+  width: 100%;                 /* fills container */
+  font-size: 1.3rem;           /* bigger font */
+  margin-top: -1rem;          /* reduces space above */
+}
+
+
+.bee-submit-container {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  margin-top: 0.5rem;       /* space from the score */
+  margin-bottom: 0.5rem;    /* space from back button */
+}
+
+#bee-submit {
+  display: inline-block;
+  min-width: 80px;
+  max-width: 120px;
+  padding: 0.3rem 0.6rem;       /* smaller padding */
+  opacity: 0.9;
+  font-size: 1.25rem;           /* smaller text */
+  border-radius: 10px;
+  border: none;
+  background: var(--white);
+  color: var(--red);
+  text-align: center;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* lighter shadow */
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+#bee-submit::before {
+  content: "♥ "; 
+  color: var(--red);
+  font-size: 1.2rem;
+}
+
+#bee-submit:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+#bee-submit:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+
+#bee-score {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+/* ---------- Honeycomb Spelling Bee ---------- */
+.bee-letters {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 1.5rem auto;
+}
+
+.bee-letter {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  color: #b11226;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.1s ease;
+  transform-origin: center center;  /* <-- add this line */
+}
+
+.bee-letter.center {
+  background: #ffd966;
+  color: #111;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  transform-origin: center center;
+}
+
+
+/* Pop and Shake Animations */
+@keyframes pop {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  50%  { transform: translate(-50%, -50%) scale(1.15); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* ---------- Word Search Game ---------- */
+.wordsearch-rule {
+  font-size: 1rem;
+  color: var(--pink);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.wordsearch-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 20px); /* 10x10 grid */
+  grid-template-rows: repeat(10, 20px);
+  gap: 3px;
+  justify-content: center;
+  margin: 1rem auto;
+}
+
+.wordsearch-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  color: var(--red);
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Playfair Display', serif;
+  border-radius: 4px;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+/* Temporary selection (while selecting letters) */
+.wordsearch-cell.selected {
+  background: #ffd966;
+  transform: scale(1.1);
+}
+
+/* Permanent highlight for found words */
+.wordsearch-cell.found {
+  background: #ffd966;  /* same as selection color */
+  color: #b11226;          /* readable text */
+  font-weight: bold;
+  transform: scale(1);  /* no pop animation */
+}
+
+/* Message and Score */
+#wordsearch-message {
+  min-height: 1.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+#wordsearch-score {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+#ws-submit {
+  margin-top: 1rem; /* space below grid */
+  font-size: 1rem; /* smaller than main menu buttons */
+  opacity:0.9;
+}
+
+/* Word list container */
+#wordsearch-list {
+  margin-top: 1rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: var(--white);
+}
+
+#wordsearch-word-list {
+  margin-top: 1rem;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 18px;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  color: var(--white);
+}
+
+#wordsearch-word-list li {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Mark words as found in the list */
+#wordsearch-word-list li.found {
+  text-decoration: line-through;
+  color: var(--pink);
+  opacity: 0.8;
+  font-weight: bold;
+}
+
+/* Word container for alternative layouts (optional) */
+#wordsearch-words-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Playfair Display', serif;
+  color: var(--white);
+  margin-top: 0.5rem;
+}
+
+#wordsearch-words-container span {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+#wordsearch-words-container span.found {
+  text-decoration: line-through;
+  color: var(--pink);
+  font-weight: bold;
+}
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+#wordsearch-message.pop {
+  animation: pop 0.3s ease forwards;
+}
+
+/* -----------------------------
+   Crossword Container
+----------------------------- */
+#crossword-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* keep content at top */
+  padding: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+  height: auto; /* no extra height stretching */
+}
+
+/* -----------------------------
+   Crossword Grid
+----------------------------- */
+.crossword-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 50px);
+  grid-template-rows: repeat(7, 50px);
+  gap: 2px;
+  justify-content: center;
+  margin: 0 auto;
+  height: auto; /* important */
+}
+
+/* -----------------------------
+   Cells
+----------------------------- */
+.crossword-cell {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  border: 2px solid #fff;
+  background: #b11226; /* active cells */
+  color: #fff;
+  position: relative;
+}
+
+.crossword-cell input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.crossword-cell input:focus {
+  outline: 2px solid var(--pink);
+}
+
+.crossword-cell.empty {
+  background: #444;
+  border: 2px solid #333;
+}
+
+/* -----------------------------
+   Numbering
+----------------------------- */
+.crossword-number {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-size: 0.6rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* -----------------------------
+   Hints & Message
+----------------------------- */
+#crossword-hints {
+  margin: 0.5rem 0 1rem 0; /* small bottom space */
+  padding: 0;
+  list-style: none;
+}
+
+#crossword-message {
+  margin: 0.5rem 0;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* -----------------------------
+   Pop animation
+----------------------------- */
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+#crossword-message.pop {
+  animation: pop 0.3s ease forwards;
+}

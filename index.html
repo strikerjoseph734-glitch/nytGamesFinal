@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>NYT Games</title>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="UTF-8">
+  <title>Valentine’s Games</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+</head><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <input type="text" id="mobile-input" style="position:absolute;opacity:0;pointer-events:none;">
+
+<body>
+  <div class="app">
+  <!-- Animated hearts background -->
+  <div class="hearts-bg">
+    <span style="left:5%; animation-duration:10s; font-size:50px;">♥</span>
+    <span style="left:20%; animation-duration:10s; font-size:50px;">♥</span>
+    <span style="left:35%; animation-duration:10s; font-size:50px;">♥</span>
+    <span style="left:50%; animation-duration:10s; font-size:50px;">♥</span>
+    <span style="left:65%; animation-duration:10s; font-size:50px;">♥</span>
+    <span style="left:80%; animation-duration:10s; font-size:50px;">♥</span>
+    <span style="left:95%; animation-duration:10s; font-size:50px;">♥</span>
+  </div>
+
+  <!-- Main Menu -->
+  <div id="menu" class="app-header">
+    <h1>Valentine’s Games</h1>
+    <p class="subtitle">For my beautiful queen</p>
+
+    <main class="games">
+      <button class="game-card" id="lovle-btn">💛 Lovle</button>
+      <button class="game-card" id="spelling-btn">🐝 Spelling Bee</button>
+      <button class="game-card" id="wordsearch-btn">🔎 Word Search</button>
+      <button class="game-card" id="crossword-btn">🧩 Mini Crossword</button>
+    </main>
+  </div>
+
+  <!-- 💛 Lovle Game -->
+  <div id="lovle-game" class="game-section">
+    <button class="game-card back-btn">⬅ Back</button>
+    <h2>💛 Lovle</h2>
+    <p>Guess the Valentine word!</p>
+    <div id="lovle-grid" class="lovle-grid"></div>
+    <p id="lovle-message"></p>
+  </div>
+
+  <!-- 🐝 Spelling Bee -->
+  <div id="spelling-game" class="game-section">
+    <button class="game-card back-btn">⬅ Back</button>
+    <h2>🐝 Spelling Bee</h2>
+    <p class="spelling-rule">Words must include the center letter</p>
+
+<div class="bee-letters">
+  <div class="bee-letter outer" data-letter="A"><span class="letter-inner">A</span></div>
+  <div class="bee-letter outer" data-letter="L"><span class="letter-inner">L</span></div>
+  <div class="bee-letter outer" data-letter="O"><span class="letter-inner">O</span></div>
+  <div class="bee-letter center" data-letter="V"><span class="letter-inner">V</span></div>
+  <div class="bee-letter outer" data-letter="E"><span class="letter-inner">E</span></div>
+  <div class="bee-letter outer" data-letter="H"><span class="letter-inner">H</span></div>
+  <div class="bee-letter outer" data-letter="R"><span class="letter-inner">R</span></div>
+</div>
+
+
+  <div class="bee-input">
+    <span id="bee-current-word"></span>
+  </div>
+
+  <p id="bee-message"></p>
+    <button id="bee-submit">Submit</button>
+   <p id="bee-score">Score: 0</p>
+  </div>
+
+  <!-- 🔎 Word Search -->
+<!-- 🔎 Word Search -->
+<div id="wordsearch-game" class="game-section" style="display:none;">
+  <button class="game-card back-btn">⬅ Back</button>
+  <h2>🔎 Word Search</h2>
+  <p class="spelling-rule">Find the Valentine words!</p>
+
+  <!-- Grid -->
+  <div id="wordsearch-grid" class="wordsearch-grid"></div>
+
+ <button id="ws-submit" class="game-card"> Submit</button>
+
+  <!-- Messages -->
+  <p id="wordsearch-message"></p>
+  <p id="wordsearch-score">Found: 0</p>
+
+  <!-- Word list -->
+  <h3>Words to Find:</h3>
+  <ul id="wordsearch-word-list" class="wordsearch-word-list"></ul>
+</div>
+
+ <!-- 🧩 Mini Crossword -->
+<div id="crossword-game" class="game-section" style="display:none;">
+  <button class="game-card back-btn">⬅ Back</button>
+
+  <h2>🧩 Mini Crossword</h2>
+  <p class="spelling-rule">Fill in the special words!</p>
+
+  <!-- Only one grid -->
+  <div id="crossword-grid" class="crossword-grid"></div>
+
+  <!-- Only one message -->
+  <p id="crossword-message"></p>
+
+  <!-- Hints -->
+  <ul id="crossword-hints"></ul>
+</div>
+
+  <footer>
+    <p>Made with ❤️ for Kylie Mona</p>
+  </footer>
+ <div>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
